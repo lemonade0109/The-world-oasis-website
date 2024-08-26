@@ -1,4 +1,4 @@
-import { Session, User } from "next-auth";
+import { DefaultSession, Session, User } from "next-auth";
 
 export interface BookingIdNumProp {
   params: {
@@ -154,11 +154,20 @@ export interface BookingdData {
 }
 
 export interface AuthenticationProp {
-  user?: User;
+  user?: {} & DefaultSession["user"];
   session?: {
     user: {
-      guestId: number | undefined;
-      email: string;
+      guestId?: number | undefined;
+      email?: string;
     };
   };
 }
+// export interface AuthenticationProp {
+//   user?: User;
+//   session?: {
+//     user: {
+//       guestId: number | undefined;
+//       email: string;
+//     };
+//   };
+// }

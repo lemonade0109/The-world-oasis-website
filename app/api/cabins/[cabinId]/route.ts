@@ -7,7 +7,7 @@ type ParamsProp = {
   };
 };
 
-export async function GET(req: NextApiRequest, { params }: ParamsProp) {
+export async function GET(req: any, { params }: ParamsProp) {
   const { cabinId } = params;
 
   try {
