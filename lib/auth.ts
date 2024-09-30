@@ -28,7 +28,7 @@ const authConfig: NextAuthConfig = {
       }
     },
 
-    async session({ session }: AuthenticationProp) {
+    async session({ session }: any) {
       const guest = await getGuest(session?.user?.email!);
       session!.user.guestId = guest?.id;
 

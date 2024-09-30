@@ -12,6 +12,8 @@ const ReservationForm = ({ cabin, session }: ReservationFormProp) => {
   const { maxCapacity, regularPrice, discount } = cabin;
   const { user } = session;
 
+  if (range === undefined) return [];
+
   const startDate = range.from;
   const endDate = range.to;
 

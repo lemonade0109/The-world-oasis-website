@@ -1,4 +1,5 @@
 import { DefaultSession, Session, User } from "next-auth";
+import { DateRange } from "react-day-picker";
 
 export interface BookingIdNumProp {
   params: {
@@ -23,22 +24,19 @@ export interface ButtonFormProp {
 
 export interface CabinProp {
   cabin: {
-    created_at?: string;
-    id?: number;
-    name?: string;
-    maxCapacity?: number;
-    regularPrice?: number;
-    discount?: number;
-    image?: string;
-    description?: string;
+    created_at?: string | null;
+    id?: number | null;
+    name?: string | null;
+    maxCapacity?: number | null;
+    regularPrice?: number | null;
+    discount?: number | null;
+    image?: string | null;
+    description?: string | null;
   };
 }
 
 export interface isAlreadyBookedProp {
-  range: {
-    from: undefined;
-    to: undefined;
-  };
+  range: DateRange | undefined;
   datesArr: Date[];
   bookedDates?: Date[];
 }
@@ -84,11 +82,8 @@ export interface BookingsProp {
 }
 
 export interface InitialState {
-  range: {
-    from: undefined;
-    to: undefined;
-  };
-  setRange: (range: { from: undefined; to: undefined }) => void;
+  range: DateRange | undefined;
+  setRange: (range: DateRange | undefined) => void;
   resetRange: () => void;
 }
 

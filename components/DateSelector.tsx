@@ -12,6 +12,8 @@ import { useReservation } from "./ReservationContext";
 import { DateSelectorProp, isAlreadyBookedProp } from "@/types/interfaces";
 
 function isAlreadyBooked({ range, datesArr }: isAlreadyBookedProp) {
+  if (!range || !range.from || !range.to) return [];
+
   return (
     range.from &&
     range.to &&
@@ -23,8 +25,10 @@ function isAlreadyBooked({ range, datesArr }: isAlreadyBookedProp) {
 
 const DateSelector = ({ settings, bookedDates, cabin }: DateSelectorProp) => {
   const { range, setRange, resetRange } = useReservation();
-
   const { regularPrice, discount } = cabin;
+
+  if (range === undefined) return [];
+
   const numNights = differenceInDays(range.to!, range.from!);
   const cabinPrice = numNights * (regularPrice! - discount!);
 
