@@ -28,7 +28,7 @@ export async function updateGuestProfile(formData: FormData) {
   const { error } = await supabase
     .from("guests")
     .update(updateData)
-    .eq("id", session.user?.guestId)
+    .eq("id", session.user?.guestId!)
     .select()
     .single();
 
@@ -75,7 +75,7 @@ export async function deleteBooking(bookingId: number) {
   if (!session) throw new Error("You must be logged in");
 
   //EXTRA SAFETY TO ENSURE ONLY AUTH GUEST CAN DELETE IT'S RESERVATION
-  const guestBookings = await getBookings(session.user?.guestId);
+  const guestBookings = await getBookings(session.user?.guestId!);
   const guestBookingIds = guestBookings.map((booking) => booking.id);
 
   if (!guestBookingIds.includes(bookingId))
@@ -104,7 +104,7 @@ export async function updateBooking(formData: FormData) {
 
   // 3) AUTHORIZATION
   // EXTRA SAFETY TO ENSURE GUEST CAN EDIT OTHER GUESTS DETAILS
-  const guestBookings = await getBookings(session.user?.guestId);
+  const guestBookings = await getBookings(session.user?.guestId!);
   const guestBookingIds = guestBookings.map((booking) => booking.id);
 
   if (!guestBookingIds.includes(bookingId))

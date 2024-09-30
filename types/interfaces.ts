@@ -141,8 +141,8 @@ export interface UpdateProfileFormProp {
 }
 
 export interface BookingdData {
-  startDate: Date | undefined;
-  endDate: Date | undefined;
+  startDate: string;
+  endDate: string;
   numNights: number;
   cabinPrice: number;
   cabinId: number;
@@ -157,12 +157,9 @@ export interface AuthenticationProp {
     };
   };
 }
-// export interface AuthenticationProp {
-//   user?: User;
-//   session?: {
-//     user: {
-//       guestId: number | undefined;
-//       email: string;
-//     };
-//   };
-// }
+
+declare module "next-auth" {
+  interface User {
+    guestId?: number;
+  }
+}
