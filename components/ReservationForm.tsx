@@ -11,13 +11,12 @@ const ReservationForm = ({ cabin, session }: ReservationFormProp) => {
   const { range, resetRange } = useReservation();
   const { maxCapacity, regularPrice, discount } = cabin;
   const { user } = session;
-
-  if (range === undefined) return [];
+  if (!range || !range.from || !range.to) return null;
 
   const startDate = range.from;
   const endDate = range.to;
 
-  const numNights = differenceInDays(endDate!, startDate!);
+  const numNights = differenceInDays(endDate, startDate);
   const cabinPrice = numNights * (regularPrice! - discount!);
 
   const bookingData = {

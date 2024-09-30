@@ -141,8 +141,8 @@ export interface UpdateProfileFormProp {
 }
 
 export interface BookingdData {
-  startDate: undefined;
-  endDate: undefined;
+  startDate: Date | undefined;
+  endDate: Date | undefined;
   numNights: number;
   cabinPrice: number;
   cabinId: number;
